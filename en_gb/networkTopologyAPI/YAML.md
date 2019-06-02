@@ -1,7 +1,8 @@
+# Network Topology API (YAML)
 Define the shape of your network - what nodes are present, what programs they each run, and how they're connected,
 by coding your topology.
 
-### The basics
+## The basics
 
 Your topology should be a map/dictionary with at least one of the keys, `single_nodes` and `node_groups`. The values for
 each of these will be a list of dictionaries, each representing a node or a group of nodes respectively.
@@ -21,7 +22,7 @@ node_groups:
 
 ---
 
-### Single nodes
+## Single nodes
 
 Each node in `single_nodes` has the following keys:
 
@@ -63,7 +64,7 @@ representation of `bob`, but we equally could have moved defined each connection
 
 ---
 
-### Node Groups
+## Node Groups
 
 You can also create groups of automatically-generated nodes, arranged in the common topologies. The node IDs _`nid`s_
 of automatically-generated nodes will be in the form `<PREFIX><COUNTER><SUFFIX>`. `<COUNTER>` is an incrementing
@@ -114,7 +115,7 @@ This gives the following topology:
 
 ---
 
-#### Line, ring and fully-connected
+### Line, ring and fully-connected
 
 Node groups for these topologies have the following keys:
 - `type` _string_ - the type of standard network topology. It must be one of `ring`, `line` or `fully_connected`.
@@ -130,7 +131,7 @@ Node groups for these topologies have the following keys:
   overall topology. Each dictionary in this list has two keys: `from` and `to`, which take the `nid`s of the two nodes
   to connect together.
 
-#### Star
+### Star
 
 A star network has a hub and some number of nodes connected to that hub. A star network node group has these keys:
 - `type` _string_ - `star`.
@@ -149,7 +150,7 @@ A star network has a hub and some number of nodes connected to that hub. A star 
   in the overall topology. Each dictionary in this list has two keys: `from` and `to`, which take the `nid`s of the two
   nodes to connect together.
 
-#### Tree (or _hierarchical_)
+### Tree (or _hierarchical_)
 
 A tree network has several layers of nodes. At the top level is the root. At the next level is the children of the root,
 and in the next level, the grandchildren of the root, and so on. A group of nodes in a tree network has the following

@@ -1,3 +1,5 @@
+# Network Topology API (JSON)
+
 Define the shape of your network - what nodes are present, what programs they each run, and how they're connected,
 by coding your topology.
 
