@@ -170,3 +170,8 @@ keys:
 - `connections` _list of dictionaries (optional)_ - extra connections from a node in this tree topology to another node
   in the overall topology. Each dictionary in this list has two keys: `from` and `to`, which take the `nid`s of the two
   nodes to connect together.
+  
+## Adding connection delays and failures
+
+You can make any connections in your network slower or less reliable by adding a (random) delay or setting a success
+rate. Do this by double-clicking on the connection (the line joining the two nodes) in the graphical network viewer.
