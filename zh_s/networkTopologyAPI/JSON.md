@@ -36,24 +36,16 @@ This is an example of a `single_nodes` list:
 
 ```yaml
 {
-  "single_nodes": [
-    {
-      "nid": "alice",
-      "program": "hello_whirled"
-    },
-    {
-      "nid": "bob",
-      "program": "hello_whirled",
-      "connections": [
-        "alice",
-        "charlie"
-      ]
-    },
-    {
-      "nid": "charlie",
-      "program": "hello_whirled"
-    }
-  ]
+  "single_nodes":
+    [
+      { "nid": "alice", "program": "hello_whirled" },
+      {
+        "nid": "bob",
+        "program": "hello_whirled",
+        "connections": ["alice", "charlie"],
+      },
+      { "nid": "charlie", "program": "hello_whirled" },
+    ],
 }
 ```
 
@@ -85,29 +77,25 @@ Here's an example of a `node_groups` list:
 
 ```yaml
 {
-  "node_groups": [
-    {
-      "type": "ring",
-      "number_nodes": 4,
-      "program": "ring_program",
-      "nid_prefix": "r",
-      "nid_suffix": "-ing",
-      "nid_starting_number": 3,
-      "nid_number_increment": 3,
-      "connections": [
-        {
-          "from": "r3-ing",
-          "to": "line1"
-        }
-      ]
-    },
-    {
-      "type": "line",
-      "number_nodes": 3,
-      "program": "program_for_line_nodes",
-      "nid_prefix": "line"
-    }
-  ]
+  "node_groups":
+    [
+      {
+        "type": "ring",
+        "number_nodes": 4,
+        "program": "ring_program",
+        "nid_prefix": "r",
+        "nid_suffix": "-ing",
+        "nid_starting_number": 3,
+        "nid_number_increment": 3,
+        "connections": [{ "from": "r3-ing", "to": "line1" }],
+      },
+      {
+        "type": "line",
+        "number_nodes": 3,
+        "program": "program_for_line_nodes",
+        "nid_prefix": "line",
+      },
+    ],
 }
 ```
 
@@ -137,6 +125,7 @@ This gives the following topology:
 #### Line, ring and fully-connected
 
 Node groups for these topologies have the following keys:
+
 - `type` _string_ - the type of standard network topology. It must be one of `ring`, `line` or `fully_connected`.
 - `number_nodes` _integer_ - the number of nodes in this topology.
 - `program` _string_ - the name of the program that the nodes in this topology should run.
@@ -153,6 +142,7 @@ Node groups for these topologies have the following keys:
 #### Star
 
 A star network has a hub and some number of nodes connected to that hub. A star network node group has these keys:
+
 - `type` _string_ - `star`.
 - `hub_program` _string_ - the name of the program that the hub node should run.
 - `hub_nid` _string_ - the `nid` of the hub node.
@@ -174,6 +164,7 @@ A star network has a hub and some number of nodes connected to that hub. A star 
 A tree network has several layers of nodes. At the top level is the root. At the next level is the children of the root,
 and in the next level, the grandchildren of the root, and so on. A group of nodes in a tree network has the following
 keys:
+
 - `type` _string_ - `tree`.
 - `number_levels` _integer_ - the number of node levels.
 - `number_children` _integer_ - the number of children (in the next level) that each node has.
@@ -189,7 +180,7 @@ keys:
 - `connections` _list of dictionaries (optional)_ - extra connections from a node in this tree topology to another node
   in the overall topology. Each dictionary in this list has two keys: `from` and `to`, which take the `nid`s of the two
   nodes to connect together.
-  
+
 ## Adding connection delays and failures
 
 You can make any connections in your network slower or less reliable by adding a (random) delay or setting a success
